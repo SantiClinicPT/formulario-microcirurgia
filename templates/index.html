@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Partner Ship</title>
+    <link rel="stylesheet" type="text/css" href="../static/style/styles.css" />
+    <link rel="icon" type="image/svg" href="/static/img/photo_2024-11-15_17-02-08.jpg" />
+    <title>Partner Ship</title>
+  </head>
+  <body>
+    <form method="post" action="/">
+      <header_form>
+        <div class="logo">
+          <img src="/static/img/photo_2024-11-15_17-02-08 (2).jpg" alt="LOGO" />
+        </div>
+
+        <!-- Display success and error messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <div class="message-container">
+              {% for category, message in messages %}
+                <div class="flash-message {{ category }}">
+                  {{ message }}
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+
+      </header_form>
+
+      {% for field in form %}
+      {% if field.name == 'submit' or field.name == 'csrf_token' %}
+      <div class="{{ 'special-class' if field.name == 'submit' else 'hidden-class' }}">
+        {{ field }}
+      </div>
+      {% elif field.name == 'checkbox' %}
+      <div class="chack_input">
+        <p>{{ field }}</p>
+        <div class="description">{{ field.label }}</div>
+      </div>
+      {% else %}
+      <p class="label">{{ field.label }}</p>
+      <p>{{ field }}</p>
+      {% endif %}
+      {% endfor %}
+    </form>
+
+    <div id="cookies">
+      <div class="container">
+        <div class="subcontainer">
+          <div class="cookies">
+            <p>
+              Este site utiliza cookies para garantir que você tenha a melhor
+              experiência em nosso site.
+              <a href="https://europa.eu/youreurope/citizens/consumers/internet-telecoms/data-protection-online-privacy/index_pt.htm"
+                target="_blank" rel="noopener noreferrer">Mais informações.</a>
+            </p>
+            <button id="cookies-btn" class="blinking">Sim, aceito!</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/static/js/coockies_script.js"></script>
+  </body>
+</html>
